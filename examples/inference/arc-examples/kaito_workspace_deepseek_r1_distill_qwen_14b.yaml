@@ -8,7 +8,7 @@ resource:
     - <your-arc-node-name>
   labelSelector:
     matchLabels:
-      apps: deepseek-r1-distill-qwen-14b
+      apps: llm-inference
 inference:
   preset:
     name: "deepseek-r1-distill-qwen-14b"

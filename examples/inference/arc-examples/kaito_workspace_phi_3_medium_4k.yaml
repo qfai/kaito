@@ -8,7 +8,7 @@ resource:
     - <your-arc-node-name>
   labelSelector:
     matchLabels:
-      apps: phi-3
+      apps: llm-inference
 inference:
   preset:
     name: phi-3-medium-4k-instruct
