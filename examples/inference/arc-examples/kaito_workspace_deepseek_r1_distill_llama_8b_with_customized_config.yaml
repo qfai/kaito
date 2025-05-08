@@ -27,4 +27,5 @@ data:
       cpu-offload-gb: 0
       swap-space: 4
       max-model-len: 4096
+      gpu-memory-utilization: 0.9
       # see https://docs.vllm.ai/en/latest/serving/engine_args.html for more options.
