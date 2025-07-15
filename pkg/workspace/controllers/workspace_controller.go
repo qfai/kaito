@@ -9,6 +9,7 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
+	"os"
 	"sort"
 	"strconv"
 	"strings"
@@ -425,8 +426,16 @@ func (c *WorkspaceReconciler) getAllQualifiedNodes(ctx context.Context, wObj *ka
 		}
 
 		// match the instanceType
-		if nodeObj.Labels[corev1.LabelInstanceTypeStable] == wObj.Resource.InstanceType {
-			qualifiedNodes = append(qualifiedNodes, lo.ToPtr(nodeObj))
+		// arc provider use workspace label instead of instance type cause all arc node has label beta.kubernetes.io/instance-type=MOCVirtualMachine
+		cloudName := os.Getenv("CLOUD_PROVIDER")
+		if cloudName == consts.ArcCloudName {
+			if nodeObj.Labels[consts.LabelWorkspace] == wObj.Name {
+				qualifiedNodes = append(qualifiedNodes, lo.ToPtr(nodeObj))
+			}
+		} else {
+			if nodeObj.Labels[corev1.LabelInstanceTypeStable] == wObj.Resource.InstanceType {
+				qualifiedNodes = append(qualifiedNodes, lo.ToPtr(nodeObj))
+			}
 		}
 	}
 

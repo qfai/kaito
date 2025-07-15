@@ -39,6 +39,9 @@ const (
 	GpuSkuPrefix = "Standard_N"
 
 	NodePluginInstallTimeout = 60 * time.Second
+
+	// Arc created node will not show sku through label, so we use this label to identify the node created by workspace's nodeclaim.
+	LabelWorkspace = "kaito.sh/workspace"
 )
 
 var (
